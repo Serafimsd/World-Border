@@ -17,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 
 import javax.annotation.Nullable;
 import java.util.*;
+import net.minecraftforge.server.permission.PermissionAPI;
 
 public class WBCommand implements ICommand
 {
@@ -229,7 +230,7 @@ public class WBCommand implements ICommand
             return true;
 
         EntityPlayerMP   player  = (EntityPlayerMP) sender;
-        GameProfile      profile = player.getGameProfile();
+        /*GameProfile      profile = player.getGameProfile();
         UserListOpsEntry opEntry = (UserListOpsEntry) WorldBorder.SERVER
             .getPlayerList()
             .getOppedPlayers()
@@ -237,7 +238,8 @@ public class WBCommand implements ICommand
 
         // Level 2 (out of 4) have general access to game-changing commands
         // TODO: Make this a configuration option
-        return opEntry != null && opEntry.getPermissionLevel() > 2;
+        return opEntry != null && opEntry.getPermissionLevel() > 2;*/
+        return PermissionAPI.hasPermission(player, "worldborder.command");
     }
 
     @Override
